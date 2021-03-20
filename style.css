@@ -1,0 +1,31 @@
+body{
+    background-color: rgb(247, 223, 188);
+    height: 100vh;
+}
+.col{
+    width: 100vh;
+    
+    
+}
+.card{
+    height: 90vh;
+    width: 100vh;
+    margin: 0 auto;
+    background-color:rgb(238, 212, 177) ;
+}
+.game-card {
+    height: 100vh;
+    
+    font-family: 'Open Sans', monospace;
+}
+
+.card-body{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-group{
+    
+ 
+}
