@@ -2,11 +2,7 @@ body{
     background-color: rgb(247, 223, 188);
     height: 100vh;
 }
-.col{
-    width: 100vh;
-    
-    
-}
+
 .card{
     height: 90vh;
     width: 100vh;
@@ -15,7 +11,7 @@ body{
 }
 .game-card {
     height: 100vh;
-    width: 100vh;
+    
     
     font-family: 'Open Sans', monospace;
 }
@@ -28,6 +24,6 @@ body{
     align-items: center;
 }
 .btn-group{
-    
+    height: 10vh;
  
 }
