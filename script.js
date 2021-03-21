@@ -1,7 +1,7 @@
 function theGame(){
 let minValue = parseInt(prompt('Минимальное знание числа для игры','-999'));
 let maxValue = parseInt(prompt('Максимальное знание числа для игры','999'));
-
+let text = "";
 if(isNaN(minValue) == true || isNaN(maxValue) == true){
     minValue = -999;
     maxValue = 999;
@@ -45,8 +45,10 @@ document.getElementById('btnOver').addEventListener('click', function () { /*Б�
             answerNumber  = Math.floor((minValue + maxValue) / 2);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
+            
             phrase(answerPhrase, answerNumber);
-            intInText(answerNumber);
+           
+            
         }
     }
 })
@@ -66,8 +68,9 @@ document.getElementById('btnLess').addEventListener('click', function () { /*Б�
             answerNumber  = Math.floor((minValue + maxValue) / 2);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
+           
             phrase(answerPhrase, answerNumber);
-            intInText(answerNumber);
+            
         }
     }
 })
@@ -91,51 +94,34 @@ document.getElementById('btnRetry').addEventListener('click', function () {
     theGame();
 })
 
-function phrase (a, b){
+function phrase (p, a){
 
 
 let phraseRandom = Math.round( Math.random());
-console.log('phraseRandom');
+
 
 if (phraseRandom === 1) {
-    a = `\u{1F608} \n Знаю, знаю... это число `;
+    p = `\u{1F608} \n Знаю, знаю... это число `;
 }else{
     phraseRandom = Math.round( Math.random());
-    console.log('phraseRandom функция');
+    
     if (phraseRandom === 1) {
-        a = `\u{1F64A} \n Может это `;
+        p = `\u{1F64A} \n Может это `;
     }else{
-        a = `\u{1F9DE}  \n Читаю твои мысли! Ты загадал`;
+        p = `\u{1F9DE}  \n Читаю твои мысли! Ты загадал`;
 
   }
-}return answerField.innerText = `${a} \n ${b}?`;
+        
 }
-
-function phraseSuccess (){
-
-
-    let phraseRandom = Math.round( Math.random());
-    
-    
-    if (phraseRandom === 1) {
-        return answerField.innerText = `\u{1F60E} \n Я всегда угадываю`;
-    }else{
-        phraseRandom = Math.round( Math.random());
-        if (phraseRandom === 1) {
-            return answerField.innerText = `\u{1F60F} \n Я сразу понял`;
-        }else{
-            return answerField.innerText = `\u{1F608} \n Это было очевидно`;
-    
-      }
-    }
-    }
-    
-
-    function intInText(a){
         let minus = "";
-        let hundreds = "conyb";
+        let hundreds = "";
         let dozens = "";
         let units = ""
+        a = String(a);
+        let b = a[1];
+        let c = a[2];
+        b = parseInt(b);
+        c = parseInt(c);
         if(a < 0){
             minus = "минус";
         }
@@ -166,11 +152,25 @@ function phraseSuccess (){
         else if(a < -99 || a > 99){
             hundreds = "сто";
         }
-        a = String(a);
-        let b = a[1];
-        b = parseInt(b);
+        else if (a < 99 && a > -99){
+            if(c == 0 && b == 0){
+            hundreds = "ноль";
+            }
+        }
+        
         if(b == 0) dozens = "";
-        else if (b == 1) dozens = "1";/*if c = 1 одиннадцать и т.д */
+        else if (b == 1) {
+            if(c == 0) units = "десять";
+            else if (c == 1) units = "одиннадцать";/*if c = 1 одиннадцать и т.д */
+            else if (c == 2) units = "двенадцать";
+            else if (c == 3) units = "тринадцать";
+            else if (c == 4) units = "четырнадцать";
+            else if (c == 5) units = "пятнадцать";
+            else if (c == 6) units = "шестнадцать";
+            else if (c == 7) units = "семнадцать";
+            else if (c == 8) units = "восемнадцать";
+            else if (c == 9) units = "девятнадцать";
+        }
         else if (b == 2) dozens = "двадцать";
         else if (b == 3) dozens = "тридцать";
         else if (b == 4) dozens = "сорок";
@@ -180,10 +180,16 @@ function phraseSuccess (){
         else if (b == 8) dozens = "восемьдесят";
         else if (b == 9) dozens = "девяносто";
 
-        let c = a[2];
-        c = parseInt(c);
-        if(c == 0) units = "";
-        else if (c == 1) units = "один";/*if c = 1 одиннадцать и т.д */
+        
+        
+        if(c == 0){
+            if(a < 99 && b == 0){
+                units = "ноль";
+            }else {
+                units = "";
+            }
+        }
+        else if (c == 1) units = "один";
         else if (c == 2) units = "два";
         else if (c == 3) units = "три";
         else if (c == 4) units = "четыре";
@@ -192,12 +198,32 @@ function phraseSuccess (){
         else if (c == 7) units = "семь";
         else if (c == 8) units = "восемь";
         else if (c == 9) units = "девять";
-        console.log(b);
-        console.log(c);
-        console.log(hundreds);
-        console.log(dozens);
-        console.log(units);
 
-
-
+        let text = `${minus} ${hundreds} ${dozens} ${units}`;
+       if (a == 0) 
+       {a = 'ноль';
     }
+       else{ a = text;
+    }
+        return answerField.innerText = `${p} \n ${a}?`;
+}
+
+function phraseSuccess (){
+
+
+    let phraseRandom = Math.round( Math.random());
+    
+    
+    if (phraseRandom === 1) {
+        return answerField.innerText = `\u{1F60E} \n Я всегда угадываю`;
+    }else{
+        phraseRandom = Math.round( Math.random());
+        if (phraseRandom === 1) {
+            return answerField.innerText = `\u{1F60F} \n Я сразу понял`;
+        }else{
+            return answerField.innerText = `\u{1F608} \n Это было очевидно`;
+    
+      }
+    }
+    }
+ 
